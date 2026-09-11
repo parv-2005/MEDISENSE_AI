@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-status-normal: hsl(var(--status-normal));
+  --color-status-normal-bg: hsl(var(--status-normal-bg));
+  --color-status-abnormal: hsl(var(--status-abnormal));
+  --color-status-abnormal-bg: hsl(var(--status-abnormal-bg));
+  --color-status-caution: hsl(var(--status-caution));
+  --color-status-caution-bg: hsl(var(--status-caution-bg));
+  --color-status-critical: hsl(var(--status-critical));
+  --color-status-critical-bg: hsl(var(--status-critical-bg));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  :root {
+    /* Base Colors - Clinical White/Gray */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    /* Primary - Medical Cobalt Blue */
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+
+    /* Secondary - Slate Gray */
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    /* Muted / Surface */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    /* Status Colors - Strict medical semantic */
+    --status-normal: 142.1 76.2% 36.3%; /* Emerald 600 */
+    --status-normal-bg: 142.1 76.2% 95%; /* Emerald 50 */
+    
+    --status-abnormal: 346.8 77.2% 49.8%; /* Rose 600 */
+    --status-abnormal-bg: 346.8 77.2% 95%; /* Rose 50 */
+    
+    --status-caution: 45.4 93.4% 47.5%; /* Amber 500 */
+    --status-caution-bg: 45.4 93.4% 95%; /* Amber 50 */
+
+    --status-critical: 0 84.2% 60.2%; /* Red 500 */
+    --status-critical-bg: 0 84.2% 95%; /* Red 50 */
+
+    /* UI Borders & Inputs */
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Clinical Dark Mode */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --status-normal: 142.1 70.6% 45.3%;
+    --status-normal-bg: 142.1 70.6% 10%;
+    
+    --status-abnormal: 346.8 77.2% 49.8%;
+    --status-abnormal-bg: 346.8 77.2% 10%;
+    
+    --status-caution: 45.4 93.4% 47.5%;
+    --status-caution-bg: 45.4 93.4% 10%;
+
+    --status-critical: 0 84.2% 60.2%;
+    --status-critical-bg: 0 84.2% 10%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+/* Watermark Utilities */
+@layer utilities {
+  .watermark-container {
+    @apply relative overflow-hidden z-0;
+  }
+  
+  .watermark-icon {
+    @apply absolute -right-6 -bottom-6 w-32 h-32 opacity-[0.03] text-foreground pointer-events-none z-[-1] transform -rotate-12 transition-transform duration-700 ease-out;
+  }
+  
+  .group:hover .watermark-icon {
+    @apply scale-110 rotate-0 opacity-[0.05];
+  }
+  
+  .watermark-icon-large {
+    @apply absolute -right-20 -bottom-20 w-80 h-80 opacity-[0.02] text-foreground pointer-events-none z-[-1] transform -rotate-6;
+  }
+}
+
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-cobalt);
+  outline-offset: 2px;
+}
+
+/* Ruled lab-sheet look for tables */
+.sheet {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(2.75rem - 1px),
+    var(--color-hairline) calc(2.75rem - 1px),
+    var(--color-hairline) 2.75rem
+  );
+}
+
+.rail-fill {
+  transition: width 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail-fill, .pulse {
+    transition: none;
+    animation: none;
+  }
+}
+
+.pulse {
+  animation: pulse 1.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.prose-answer p + p {
+  margin-top: 0.75rem;
+}
