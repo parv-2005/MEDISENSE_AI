@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: medisense-backend
+    env: docker
+    dockerContext: backend
+    dockerfilePath: backend/Dockerfile
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: MONGODB_URI
+        sync: false
+      - key: FRONTEND_ORIGIN
+        # Update this to your deployed Vercel URL once you have it, e.g., https://your-app.vercel.app
+        value: "http://localhost:3000"
