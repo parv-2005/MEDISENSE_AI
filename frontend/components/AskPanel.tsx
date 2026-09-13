@@ -100,27 +100,7 @@ export function AskPanel({ reportId, enabled, onAnswered }: { reportId: string; 
                     {a.answer}
                   </div>
                   
-                  {a.sources.length > 0 && (
-                    <div className="mt-5 pt-4 border-t border-border">
-                      <button
-                        onClick={() => setOpenSources(openSources === a.id ? null : a.id)}
-                        className="text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
-                        aria-expanded={openSources === a.id}
-                      >
-                        {openSources === a.id ? "Hide" : "Show"} {a.sources.length} clinical {a.sources.length === 1 ? "reference" : "references"}
-                      </button>
-                      {openSources === a.id && (
-                        <ol className="mt-3 space-y-3">
-                          {a.sources.map((s, i) => (
-                            <li key={i} className="text-sm bg-muted/50 border border-border rounded-lg p-4 text-muted-foreground whitespace-pre-line font-mono text-[13px] leading-relaxed">
-                              <span className="text-foreground font-semibold mr-2">[{i + 1}]</span>
-                              {s.text}
-                            </li>
-                          ))}
-                        </ol>
-                      )}
-                    </div>
-                  )}
+
                 </div>
               </div>
             </div>
